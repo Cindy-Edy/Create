@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input Pesan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Gaya Umum */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, rgba(79, 172, 254, 0.9), rgba(0, 242, 254, 0.9)),
+        url('gambar/nightcar.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      padding: 25px 30px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #4facfe;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-size: 1em;
+      text-align: left;
+      color: #555;
+    }
+
+    input[type="text"] {
+      width: 95%;
+      padding: 12px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #4facfe;
+      box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+    }
+
+    .btn {
+      padding: 15px 20px;
+      font-size: 1em;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to right, #36d1dc, #5b86e5);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(50, 200, 230, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(50, 200, 230, 0.5);
+    }
+
+    .btn-secondary {
+      margin-top: 10px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 8px 15px rgba(255, 70, 92, 0.5);
+    }
+
+    .btn-link {
+      background: linear-gradient(to right, #f7971e, #ffd200);
+      margin-top: 10px;
+    }
+
+    .btn-link:hover {
+      box-shadow: 0 8px 15px rgba(255, 215, 0, 0.5);
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    footer a {
+      color: #4facfe;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #36d1dc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Input Pesan</h1>
+    <form id="messageForm">
+      <label for="message1">Pesan 1:</label>
+      <input type="text" id="message1" placeholder="Masukkan pesan pertama..." required />
+
+      <label for="message2">Pesan 2:</label>
+      <input type="text" id="message2" placeholder="Masukkan pesan kedua..." required />
+
+      <label for="message3">Pesan 3:</label>
+      <input type="text" id="message3" placeholder="Masukkan pesan ketiga..." required />
+
+      <label for="message4">Pesan 4:</label>
+      <input type="text" id="message4" placeholder="Masukkan pesan keempat..." required />
+
+      <label for="message5">Pesan 5:</label>
+      <input type="text" id="message5" placeholder="Masukkan pesan kelima..." required />
+
+      <label for="message6">Pesan 6:</label>
+      <input type="text" id="message6" placeholder="Masukkan pesan keenam..." required />
+
+      <button type="submit" class="btn">Simpan Pesan</button>
+    </form>
+    <button class="btn btn-link" id="copyLink">Salin Link</button>
+    <button class="btn btn-secondary" id="clearData">Hapus Data</button>
+    <footer>
+        Dibuat oleh <a href="#">Edy & Cindy</a>
+      </footer>
+    
+  </div>
+  
+  <script>
+    const form = document.getElementById('messageForm');
+    const clearDataButton = document.getElementById('clearData');
+    const copyLinkButton = document.getElementById('copyLink');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Ambil nilai dari input
+      const message1 = document.getElementById('message1').value;
+      const message2 = document.getElementById('message2').value;
+      const message3 = document.getElementById('message3').value;
+      const message4 = document.getElementById('message4').value;
+      const message5 = document.getElementById('message5').value;
+      const message6 = document.getElementById('message6').value;
+
+      // Simpan ke localStorage
+      localStorage.setItem('message1', message1);
+      localStorage.setItem('message2', message2);
+      localStorage.setItem('message3', message3);
+      localStorage.setItem('message4', message4);
+      localStorage.setItem('message5', message5);
+      localStorage.setItem('message6', message6);
+
+      // Notifikasi dengan SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: 'Pesan berhasil disimpan!',
+        confirmButtonColor: '#36d1dc',
+      }).then(() => {
+        form.reset(); // Reset form setelah berhasil
+      });
+    });
+
+    clearDataButton.addEventListener('click', function () {
+      Swal.fire({
+        title: 'Yakin ingin menghapus data?',
+        text: 'Semua pesan akan dihapus!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff416c',
+        cancelButtonColor: '#ccc',
+        confirmButtonText: 'Ya, hapus!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear(); // Hapus semua data di localStorage
+          Swal.fire('Data dihapus!', 'Semua pesan telah dihapus.', 'success');
+        }
+      });
+    });
+
+    copyLinkButton.addEventListener('click', function () {
+      // Tentukan link yang ingin disalin
+      const link = "https://cindy-edy.github.io/Create/foryou/index.html"; // Link kustom Anda
+      navigator.clipboard
+        .writeText(link)
+        .then(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Link berhasil disalin ke clipboard!',
+            confirmButtonColor: '#36d1dc',
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: 'Gagal menyalin link. Coba lagi!',
+            confirmButtonColor: '#ff416c',
+          });
+        });
+    });
+  </script>
+</body>
+
+</html>
