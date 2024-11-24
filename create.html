@@ -177,7 +177,7 @@
   <button id="clearDataButton" onclick="clearData()">Clear Data</button>
 
   <footer>
-    <p>Dibuat Oleh Edy & Cindy | <a href="#" id="copyLink" class="copy-link">Copy Link</a></p>
+    <p>Dibuat Oleh Edy & Cindy | <a href="https://cindy-edy.github.io/Create/index.html" id="copyLink" class="copy-link">Copy Link</a></p>
   </footer>
 
   <script>
@@ -209,19 +209,18 @@
       location.reload(); // Memuat ulang halaman untuk memperbarui konten
     }
   </script>
-
-  <script>
+<script>
   document.getElementById('copyLink').addEventListener('click', function (e) {
-    e.preventDefault(); // Mencegah tautan melakukan navigasi
-    const link = "https://cindy-edy.github.io/Create/index.html"; // URL yang akan disalin
+    e.preventDefault(); // Mencegah perilaku tautan default
+    const link = "https://cindy-edy.github.io/Create/index.html"; // Tautan yang ditentukan
     navigator.clipboard.writeText(link).then(() => {
-      alert('Link copied to clipboard!'); // Notifikasi berhasil
-    }).catch(() => {
-      alert('Failed to copy link. Please try again!');
+      alert(`Link copied to clipboard:\n${link}`); // Pesan konfirmasi
+    }).catch((err) => {
+      alert('Failed to copy the link. Please try again!');
+      console.error('Copy error: ', err); // Debug jika ada kesalahan
     });
   });
 </script>
-
 
 </body>
 
