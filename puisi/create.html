@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Input Puisi & Tanda Tangan</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     body {
@@ -111,7 +110,6 @@
     footer a:hover {
       color: #ff416c;
     }
-
   </style>
 </head>
 
@@ -126,8 +124,8 @@
       <input type="text" id="signature" placeholder="Masukkan nama kamu..." required />
 
       <button type="submit" class="btn">Buat Link</button>
-      <!-- Tombol Hapus Data -->
     </form>
+    <button id="copyLink" class="btn" style="margin-top: 15px; display: none;">Salin Link</button>
     <footer>
       Dibuat oleh <a href="#">Edy & Cindy</a>
     </footer>
@@ -135,6 +133,8 @@
 
   <script>
     const form = document.getElementById('poemForm');
+    const copyLinkButton = document.getElementById('copyLink');
+    let generatedLink = '';
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -142,21 +142,44 @@
       // Ambil nilai dari input
       const poem = encodeURIComponent(document.getElementById('poem').value);
       const signature = encodeURIComponent(document.getElementById('signature').value);
-      
-
 
       // Buat link dengan query string
-      const link = `https://cindy-edy.github.io/Create/puisi/index.html?&poem=${poem}&signature=${signature}`;
+      generatedLink = `https://cindy-edy.github.io/Create/puisi/index.html?poem=${poem}&signature=${signature}`;
 
       // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
         icon: 'success',
         title: 'Berhasil!',
-        html: `copy link dibawah ini ya:<br><a href="${link}" target="_blank">${link}</a>`,
+        html: `Copy link di bawah ini:<br><a href="${generatedLink}" target="_blank">${generatedLink}</a>`,
         confirmButtonColor: '#36d1dc',
       });
+
+      // Tampilkan tombol salin link
+      copyLinkButton.style.display = 'block';
     });
 
+    copyLinkButton.addEventListener('click', function () {
+      if (generatedLink) {
+        navigator.clipboard
+          .writeText(generatedLink)
+          .then(() => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil!',
+              text: 'Link berhasil disalin ke clipboard!',
+              confirmButtonColor: '#36d1dc',
+            });
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal!',
+              text: 'Gagal menyalin link. Coba lagi!',
+              confirmButtonColor: '#ff4b2b',
+            });
+          });
+      }
+    });
   </script>
 </body>
 
