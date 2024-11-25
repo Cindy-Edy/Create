@@ -157,6 +157,7 @@
     const form = document.getElementById('messageForm');
     const clearDataButton = document.getElementById('clearData');
     const copyLinkButton = document.getElementById('copyLink');
+    let generatedLink = '';
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -199,10 +200,19 @@
     });
 
     copyLinkButton.addEventListener('click', function () {
-      // Tentukan link yang ingin disalin
-      const link = "https://cindy-edy.github.io/Create/foryou/index.html?message1=${message1}&message2=${message2}&message3=${message3}&message4=${message4}&message5=${message5}&ngetik=${message6}`;" // Link kustom Anda
+      if (!generatedLink) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal!',
+          text: 'Generate link terlebih dahulu sebelum menyalin!',
+          confirmButtonColor: '#ff4b2b',
+        });
+        return;
+      }
+
+      // Salin link ke clipboard
       navigator.clipboard
-        .writeText(link)
+        .writeText(generatedLink)
         .then(() => {
           Swal.fire({
             icon: 'success',
@@ -216,7 +226,7 @@
             icon: 'error',
             title: 'Gagal!',
             text: 'Gagal menyalin link. Coba lagi!',
-            confirmButtonColor: '#ff416c',
+            confirmButtonColor: '#ff4b2b',
           });
         });
     });
