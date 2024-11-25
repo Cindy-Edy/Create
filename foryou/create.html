@@ -141,18 +141,18 @@
       <input type="text" id="message5" placeholder="Masukkan pesan kelima..." required />
 
       <label for="message6">Pesan 6:</label>
-      <input type="text" id="message6" placeholder="Masukkan pesan keenam..." required />
+      <input type="text" id="ngetik" placeholder="Masukkan pesan keenam..." required />
 
       <button type="submit" class="btn">Simpan Pesan</button>
     </form>
     <button class="btn btn-link" id="copyLink">Salin Link</button>
     <button class="btn btn-secondary" id="clearData">Hapus Data</button>
     <footer>
-        Dibuat oleh <a href="#">Edy & Cindy</a>
-      </footer>
-    
+      Dibuat oleh <a href="#">Edy & Cindy</a>
+    </footer>
+
   </div>
-  
+
   <script>
     const form = document.getElementById('messageForm');
     const clearDataButton = document.getElementById('clearData');
@@ -162,29 +162,22 @@
       e.preventDefault();
 
       // Ambil nilai dari input
-      const message1 = document.getElementById('message1').value;
-      const message2 = document.getElementById('message2').value;
-      const message3 = document.getElementById('message3').value;
-      const message4 = document.getElementById('message4').value;
-      const message5 = document.getElementById('message5').value;
-      const message6 = document.getElementById('message6').value;
+      const message1 = encodeURIComponent(document.getElementById('message1').value);
+      const message2 = encodeURIComponent(document.getElementById('message2').value);
+      const message3 = encodeURIComponent(document.getElementById('message3').value);
+      const message4 = encodeURIComponent(document.getElementById('message4').value);
+      const message5 = encodeURIComponent(document.getElementById('message5').value);
+      const message6 = encodeURIComponent(document.getElementById('ngetik').value);
 
-      // Simpan ke localStorage
-      localStorage.setItem('message1', message1);
-      localStorage.setItem('message2', message2);
-      localStorage.setItem('message3', message3);
-      localStorage.setItem('message4', message4);
-      localStorage.setItem('message5', message5);
-      localStorage.setItem('message6', message6);
+      // Buat link dengan query string
+      const link = `https://cindy-edy.github.io/Create/index.html?message1=${message1}&message2=${message2}&message3=${message3}&message4=${message4}&message5=${message5}&ngetik=${message6}`;
 
-      // Notifikasi dengan SweetAlert2
+      // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
         icon: 'success',
         title: 'Berhasil!',
-        text: 'Pesan berhasil disimpan!',
+        html: `Link berhasil dibuat:<br><a href="${link}" target="_blank">${link}</a>`,
         confirmButtonColor: '#36d1dc',
-      }).then(() => {
-        form.reset(); // Reset form setelah berhasil
       });
     });
 
