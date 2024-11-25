@@ -125,7 +125,6 @@
     .control-btn:hover {
       background: rgba(255, 255, 255, 0.4);
     }
-
   </style>
 </head>
 
@@ -154,9 +153,10 @@
   <div class="control-btn" id="music-control">Hentikan Musik</div>
 
   <script>
-    // Ambil data dari localStorage
-    const poemText = localStorage.getItem('poemText') || 'Tidak ada puisi yang ditemukan.';
-    const signatureText = localStorage.getItem('signature') || 'Tanda tangan tidak tersedia.';
+    const urlParams = new URLSearchParams(window.location.search);
+
+    document.getElementById('poemText').innerText = decodeURIComponent(urlParams.get('poemText') || 'nama belum diisi.');
+    document.getElementById('signature').innerText = decodeURIComponent(urlParams.get('signature') || 'Pesan 2 belum diisi.');
 
     // Tampilkan teks puisi
     const poemElement = document.getElementById('poem');
