@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Input Pesan</title>
+  <title>Buat Pesan Kamu</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
@@ -140,12 +140,11 @@
       <label for="message5">Pesan 5:</label>
       <input type="text" id="message5" placeholder="Masukkan pesan kelima..." required />
 
-      <label for="message6">Pesan 6:</label>
+      <label for="ngetik">Pesan panjang:</label>
       <input type="text" id="ngetik" placeholder="Masukkan pesan keenam..." required />
 
-      <button type="submit" class="btn">Simpan Pesan</button>
+      <button type="submit" class="btn">Buat Link</button>
     </form>
-    <button class="btn btn-link" id="copyLink">Salin Link</button>
     <button class="btn btn-secondary" id="clearData">Hapus Data</button>
     <footer>
       Dibuat oleh <a href="#">Edy & Cindy</a>
@@ -156,8 +155,6 @@
   <script>
     const form = document.getElementById('messageForm');
     const clearDataButton = document.getElementById('clearData');
-    const copyLinkButton = document.getElementById('copyLink');
-    let generatedLink = '';
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -168,20 +165,21 @@
       const message3 = encodeURIComponent(document.getElementById('message3').value);
       const message4 = encodeURIComponent(document.getElementById('message4').value);
       const message5 = encodeURIComponent(document.getElementById('message5').value);
-      const message6 = encodeURIComponent(document.getElementById('ngetik').value);
+      const ngetik = encodeURIComponent(document.getElementById('ngetik').value);
 
       // Buat link dengan query string
-      const link = `https://cindy-edy.github.io/Create/foryou/index.html?message1=${message1}&message2=${message2}&message3=${message3}&message4=${message4}&message5=${message5}&ngetik=${message6}`;
+      const link = `https://cindy-edy.github.io/Create/foryou/index.html?message1=${message1}&message2=${message2}&message3=${message3}&message4=${message4}&message5=${message5}&ngetik=${ngetik}`;
 
       // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
         icon: 'success',
         title: 'Berhasil!',
-        html: `Link berhasil dibuat:<br><a href="${link}" target="_blank">${link}</a>`,
+        html: `copy link dibawah ini ya:<br><a href="${link}" target="_blank">${link}</a>`,
         confirmButtonColor: '#36d1dc',
       });
     });
 
+   
     clearDataButton.addEventListener('click', function () {
       Swal.fire({
         title: 'Yakin ingin menghapus data?',
@@ -197,38 +195,6 @@
           Swal.fire('Data dihapus!', 'Semua pesan telah dihapus.', 'success');
         }
       });
-    });
-
-    copyLinkButton.addEventListener('click', function () {
-      if (!generatedLink) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Gagal!',
-          text: 'Generate link terlebih dahulu sebelum menyalin!',
-          confirmButtonColor: '#ff4b2b',
-        });
-        return;
-      }
-
-      // Salin link ke clipboard
-      navigator.clipboard
-        .writeText(generatedLink)
-        .then(() => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: 'Link berhasil disalin ke clipboard!',
-            confirmButtonColor: '#36d1dc',
-          });
-        })
-        .catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: 'Gagal menyalin link. Coba lagi!',
-            confirmButtonColor: '#ff4b2b',
-          });
-        });
     });
   </script>
 </body>
