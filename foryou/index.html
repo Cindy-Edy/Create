@@ -95,21 +95,14 @@
   </script>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
+   const urlParams = new URLSearchParams(window.location.search);
 
-    const message1 = urlParams.get('message1') || 'Pesan 1 belum diisi.';
-    const message2 = urlParams.get('message2') || 'Pesan 2 belum diisi.';
-    const message3 = urlParams.get('message3') || 'Pesan 3 belum diisi.';
-    const message4 = urlParams.get('message4') || 'Pesan 4 belum diisi.';
-    const message5 = urlParams.get('message5') || 'Pesan 5 belum diisi.';
-    const message6 = urlParams.get('message6') || 'Pesan 6 belum diisi.';
-
-    document.getElementById('pesan1').innerText = decodeURIComponent(message1);
-    document.getElementById('pesan2').innerText = decodeURIComponent(message2);
-    document.getElementById('pesan3').innerText = decodeURIComponent(message3);
-    document.getElementById('pesan4').innerText = decodeURIComponent(message4);
-    document.getElementById('pesan5').innerText = decodeURIComponent(message5);
-    document.getElementById('ngetik').innerText = decodeURIComponent(message6);
+    document.getElementById('pesan1').innerText = decodeURIComponent(urlParams.get('message1') || 'Pesan 1 belum diisi.');
+    document.getElementById('pesan2').innerText = decodeURIComponent(urlParams.get('message2') || 'Pesan 2 belum diisi.');
+    document.getElementById('pesan3').innerText = decodeURIComponent(urlParams.get('message3') || 'Pesan 3 belum diisi.');
+    document.getElementById('pesan4').innerText = decodeURIComponent(urlParams.get('message4') || 'Pesan 4 belum diisi.');
+    document.getElementById('pesan5').innerText = decodeURIComponent(urlParams.get('message5') || 'Pesan 5 belum diisi.');
+    document.getElementById('pesan6').innerText = decodeURIComponent(urlParams.get('message6') || 'Pesan 6 belum diisi.');
 
   </script>
 
