@@ -119,8 +119,8 @@
   <div class="container">
     <h1>Masukkan Puisi & Tanda Tangan</h1>
     <form id="poemForm">
-      <label for="poemText">Teks Puisi:</label>
-      <textarea id="poemText" rows="6" placeholder="Masukkan puisi di sini..." required></textarea>
+      <label for="poem">Teks Puisi:</label>
+      <textarea id="poem" rows="6" placeholder="Masukkan puisi di sini..." required></textarea>
 
       <label for="signature">Nama Kamu:</label>
       <input type="text" id="signature" placeholder="Masukkan nama kamu..." required />
@@ -140,13 +140,13 @@
       e.preventDefault();
 
       // Ambil nilai dari input
-      const poemText = encodeURIComponent(document.getElementById('poemText').value);
+      const poem = encodeURIComponent(document.getElementById('poem').value);
       const signature = encodeURIComponent(document.getElementById('signature').value);
       
 
 
       // Buat link dengan query string
-      const link = `https://cindy-edy.github.io/Create/puisi/index.html?&poemText=${poemText}&signature=${signature}`;
+      const link = `https://cindy-edy.github.io/Create/puisi/index.html?&poem=${poem}&signature=${signature}`;
 
       // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
