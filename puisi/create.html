@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Input Puisi & Tanda Tangan</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -110,57 +112,6 @@
       color: #ff416c;
     }
 
-    /* Tombol Hapus Data */
-    .delete-btn {
-      padding: 12px 30px;
-      font-size: 1em;
-      font-family: 'Playfair Display', serif;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 6px 10px rgba(255, 70, 92, 0.4);
-      transition: all 0.3s ease;
-      margin-top: 20px;
-    }
-
-    .delete-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(255, 70, 92, 0.5);
-    }
-
-    .delete-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 6px rgba(255, 70, 92, 0.3);
-    }
-
-    /* Tombol Salin Link */
-    .copy-link-btn {
-      padding: 12px 30px;
-      font-size: 1em;
-      font-family: 'Playfair Display', serif;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(45deg, #36d1dc, #5b86e5);
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 6px 10px rgba(50, 200, 230, 0.4);
-      transition: all 0.3s ease;
-      margin-top: 20px;
-    }
-
-    .copy-link-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(50, 200, 230, 0.5);
-    }
-
-    .copy-link-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 6px rgba(50, 200, 230, 0.3);
-    }
   </style>
 </head>
 
@@ -174,10 +125,8 @@
       <label for="signature">Nama Kamu:</label>
       <input type="text" id="signature" placeholder="Masukkan nama kamu..." required />
 
-      <button type="submit" class="btn">Simpan</button>
+      <button type="submit" class="btn">Buat Link</button>
       <!-- Tombol Hapus Data -->
-    <button class="delete-btn" id="deleteDataBtn">Hapus Data</button>
-    <button class="copy-link-btn" id="copyLinkBtn">Salin Link</button>
     </form>
     <footer>
       Dibuat oleh <a href="#">Edy & Cindy</a>
@@ -185,47 +134,29 @@
   </div>
 
   <script>
-    document.getElementById('poemForm').addEventListener('submit', function (e) {
+    const form = document.getElementById('poemForm');
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const poemText = document.getElementById('poemText').value;
-      const signature = document.getElementById('signature').value;
+      // Ambil nilai dari input
+      const poemText = encodeURIComponent(document.getElementById('poemText').value);
+      const signature = encodeURIComponent(document.getElementById('signature').value);
+      
 
-      // Simpan ke Local Storage
-      localStorage.setItem('poemText', poemText);
-      localStorage.setItem('signature', signature);
 
-      alert('Teks Puisi dan Tanda Tangan berhasil disimpan!');
-    });
+      // Buat link dengan query string
+      const link = `https://cindy-edy.github.io/Create/puisi/index.html?&poemText=${poemText}&signature=${signature}`;
 
-    // Fungsi Hapus Data
-    const deleteDataButton = document.getElementById('deleteDataBtn');
-    deleteDataButton.addEventListener('click', function () {
-      if (confirm("Apakah Anda yakin ingin menghapus data?")) {
-        // Menghapus data dari localStorage
-        localStorage.removeItem('poemText');
-        localStorage.removeItem('signature');
-        
-        // Menghapus tampilan puisi dan tanda tangan
-        poemElement.innerHTML = '';
-        document.getElementById('signature').innerText = '';
-        
-        alert('Data berhasil dihapus!');
-      }
-    });
-
-     // Fungsi Salin Link
-    const copyLinkButton = document.getElementById('copyLinkBtn');
-    copyLinkButton.addEventListener('click', function () {
-      // Tentukan link yang ingin disalin
-      const link = "https://cindy-edy.github.io/Create/puisi/index.html"; // Masukkan link sesuai yang diinginkan
-      navigator.clipboard.writeText(link).then(() => {
-        alert('Link berhasil disalin ke clipboard!');
-      }).catch((err) => {
-        alert('Gagal menyalin link. Coba lagi!');
-        console.error('Copy error: ', err); // Debug jika ada kesalahan
+      // Tampilkan notifikasi dengan SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        html: `copy link dibawah ini ya:<br><a href="${link}" target="_blank">${link}</a>`,
+        confirmButtonColor: '#36d1dc',
       });
     });
+
   </script>
 </body>
 
