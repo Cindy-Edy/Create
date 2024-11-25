@@ -67,42 +67,6 @@
       box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
     }
 
-    .btn {
-      padding: 15px 20px;
-      font-size: 1em;
-      font-weight: bold;
-      color: white;
-      background: linear-gradient(to right, #36d1dc, #5b86e5);
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 6px 10px rgba(50, 200, 230, 0.4);
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(50, 200, 230, 0.5);
-    }
-
-    .btn-secondary {
-      margin-top: 10px;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-    }
-
-    .btn-secondary:hover {
-      box-shadow: 0 8px 15px rgba(255, 70, 92, 0.5);
-    }
-
-    .btn-link {
-      background: linear-gradient(to right, #f7971e, #ffd200);
-      margin-top: 10px;
-    }
-
-    .btn-link:hover {
-      box-shadow: 0 8px 15px rgba(255, 215, 0, 0.5);
-    }
-
     footer {
       margin-top: 20px;
       font-size: 0.9em;
@@ -145,7 +109,7 @@
 
       <button type="submit" class="btn">Buat Link</button>
     </form>
-    <button class="btn btn-secondary" id="clearData">Hapus Data</button>
+  
     <footer>
       Dibuat oleh <a href="#">Edy & Cindy</a>
     </footer>
@@ -154,7 +118,6 @@
 
   <script>
     const form = document.getElementById('messageForm');
-    const clearDataButton = document.getElementById('clearData');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -179,23 +142,6 @@
       });
     });
 
-   
-    clearDataButton.addEventListener('click', function () {
-      Swal.fire({
-        title: 'Yakin ingin menghapus data?',
-        text: 'Semua pesan akan dihapus!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ff416c',
-        cancelButtonColor: '#ccc',
-        confirmButtonText: 'Ya, hapus!',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          localStorage.clear(); // Hapus semua data di localStorage
-          Swal.fire('Data dihapus!', 'Semua pesan telah dihapus.', 'success');
-        }
-      });
-    });
   </script>
 </body>
 
