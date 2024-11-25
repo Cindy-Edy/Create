@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat kamu</title>
+    <title>Buat Kamu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -95,6 +95,16 @@
             box-shadow: 0 4px 6px rgba(255, 70, 92, 0.3);
         }
 
+        .btn-secondary {
+            margin-top: 15px;
+            background: linear-gradient(45deg, #36d1dc, #5b86e5);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(79, 172, 254, 0.5);
+        }
+
         footer {
             margin-top: 20px;
             font-size: 0.9em;
@@ -117,15 +127,17 @@
     <div class="container">
         <h1>Untuk Kamu</h1>
         <form id="poemForm">
-            <label for="teks1">pesan 1</label>
-            <input type="text" id="teks1" placeholder="pesan kamu..." required />
+            <label for="teks1">Pesan 1</label>
+            <input type="text" id="teks1" placeholder="Masukkan pesan pertama..." required />
 
-            <label for="textsec2">pesan panjang</label>
-            <textarea id="textsec2" rows="6" placeholder="pesan kamu..." required></textarea>
+            <label for="textsec2">Pesan Panjang</label>
+            <textarea id="textsec2" rows="6" placeholder="Masukkan pesan panjang..." required></textarea>
 
             <button type="submit" class="btn">Buat Link</button>
         </form>
-       
+
+        <button id="copyLink" class="btn btn-secondary" style="display: none;">Salin Link</button>
+
         <footer>
             Dibuat oleh <a href="#">Edy & Cindy</a>
         </footer>
@@ -133,13 +145,26 @@
 
     <script>
         const form = document.getElementById('poemForm');
+        const copyLinkButton = document.getElementById('copyLink');
+        let generatedLink = '';
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
             // Ambil nilai dari input
-            const teks1 = encodeURIComponent(document.getElementById('teks1').value);
-            const textsec2 = encodeURIComponent(document.getElementById('textsec2').value);
+            const teks1 = encodeURIComponent(document.getElementById('teks1').value.trim());
+            const textsec2 = encodeURIComponent(document.getElementById('textsec2').value.trim());
+
+            // Validasi input kosong
+            if (!teks1 || !textsec2) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Semua kolom harus diisi!',
+                    confirmButtonColor: '#ff4b2b',
+                });
+                return;
+            }
 
             // Buat link dengan query string
             generatedLink = `https://cindy-edy.github.io/Create/buatkamu/index.html?teks1=${teks1}&textsec2=${textsec2}`;
@@ -150,9 +175,31 @@
                 title: 'Berhasil!',
                 html: `Copy link di bawah ini:<br><a href="${generatedLink}" target="_blank">${generatedLink}</a>`,
                 confirmButtonColor: '#36d1dc',
-            });       
+            });
+
+            // Tampilkan tombol salin link
+            copyLinkButton.style.display = 'block';
         });
 
+        copyLinkButton.addEventListener('click', function () {
+            if (generatedLink) {
+                navigator.clipboard.writeText(generatedLink).then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Link Disalin!',
+                        text: 'Link berhasil disalin ke clipboard.',
+                        confirmButtonColor: '#36d1dc',
+                    });
+                }).catch(() => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: 'Tidak dapat menyalin link. Coba lagi!',
+                        confirmButtonColor: '#ff4b2b',
+                    });
+                });
+            }
+        });
     </script>
 </body>
 
