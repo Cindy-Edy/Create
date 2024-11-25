@@ -155,8 +155,8 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
 
-    document.getElementById('poemText').innerText = decodeURIComponent(urlParams.get('poemText') || 'nama belum diisi.');
-    document.getElementById('signature').innerText = decodeURIComponent(urlParams.get('signature') || 'Pesan 2 belum diisi.');
+    document.getElementById('poem').innerText = decodeURIComponent(urlParams.get('poem') || 'nama belum diisi.');
+    document.getElementById('signature').innerText = decodeURIComponent(urlParams.get('signature') || 'Pesan belum diisi.');
 
     // Tampilkan teks puisi
     const poemElement = document.getElementById('poem');
