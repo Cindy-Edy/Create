@@ -145,13 +145,13 @@
 
   <div class="input-form">
     <form id="updateForm">
-      <label for="text1">Text 1:</label>
+      <label for="text1">Text 1</label>
       <input type="text" id="text1" placeholder="Text 1" required>
 
-      <label for="text2">Text 2:</label>
+      <label for="text2">Text 2</label>
       <input type="text" id="text2" placeholder="Text 2" required>
 
-      <label for="text3">Pesan:</label>
+      <label for="text3">Pesan panjang</label>
       <textarea id="text3" placeholder="Isi Pesan" required></textarea>
 
       <button type="submit">Buat Link</button>
@@ -177,7 +177,7 @@
 
 
       // Buat link dengan query string
-      const link = `https://cindy-edy.github.io/Create/create/index.html?text1=${text1}&text2=${text2}&text3=${text3}`;
+      const link = `https://cindy-edy.github.io/Create/index.html?text1=${text1}&text2=${text2}&text3=${text3}`;
 
       // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
