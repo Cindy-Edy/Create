@@ -141,24 +141,22 @@
   <div class="container">
     <h2 class="title">Untuk Kekasihku</h2>
     <div class="poem-container">
-      <div class="poem" id="poem">
-        <!-- Teks puisi akan diisi oleh JavaScript -->
-      </div>
+      <div class="poem" id="poem"></div>
     </div>
-    <p class="signature" id="signature">
-      <!-- Tanda tangan akan diisi oleh JavaScript -->
-    </p>
+    <p class="signature" id="signature"></p>
   </div>
   <!-- Tombol Kontrol Musik -->
   <div class="control-btn" id="music-control">Hentikan Musik</div>
 
   <script>
+    // Ambil data dari URL
     const urlParams = new URLSearchParams(window.location.search);
 
-    document.getElementById('poem').innerText = decodeURIComponent(urlParams.get('poem') || 'nama belum diisi.');
-    document.getElementById('signature').innerText = decodeURIComponent(urlParams.get('signature') || 'Pesan belum diisi.');
+    // Ambil puisi dan tanda tangan dari query string
+    const poemText = decodeURIComponent(urlParams.get('poem') || 'Puisi belum diisi.');
+    const signatureText = decodeURIComponent(urlParams.get('signature') || 'Nama belum diisi.');
 
-    // Tampilkan teks puisi
+    // Tampilkan teks puisi dengan efek ketik
     const poemElement = document.getElementById('poem');
     let words = poemText.split(' ');
     let currentWordIndex = 0;
@@ -167,16 +165,13 @@
       if (currentWordIndex < words.length) {
         poemElement.innerHTML += words[currentWordIndex] + ' ';
         currentWordIndex++;
-        setTimeout(typeWord, 600); // Ketik setiap kata setiap 200ms
+        setTimeout(typeWord, 500); // Ketik setiap kata setiap 500ms
       }
     }
     typeWord();
 
     // Tampilkan tanda tangan
     document.getElementById('signature').innerText = signatureText;
-  </script>
-
-  <script>
 
     // Efek salju
     const snowContainer = document.getElementById('snow');
@@ -218,7 +213,6 @@
         musicControl.textContent = 'Mainkan Musik';
       }
     });
-
   </script>
 </body>
 
