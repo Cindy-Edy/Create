@@ -169,9 +169,6 @@
       const message5 = encodeURIComponent(document.getElementById('message5').value);
       const message6 = encodeURIComponent(document.getElementById('ngetik').value);
 
-      // Buat link dengan query string
-      const link = `https://cindy-edy.github.io/Create/index.html?message1=${message1}&message2=${message2}&message3=${message3}&message4=${message4}&message5=${message5}&ngetik=${message6}`;
-
       // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
         icon: 'success',
@@ -200,7 +197,7 @@
 
     copyLinkButton.addEventListener('click', function () {
       // Tentukan link yang ingin disalin
-      const link = "https://cindy-edy.github.io/Create/foryou/index.html"; // Link kustom Anda
+      const link = "https://cindy-edy.github.io/Create/index.html?message1=${message1}&message2=${message2}&message3=${message3}&message4=${message4}&message5=${message5}&ngetik=${message6}"; // Link kustom Anda
       navigator.clipboard
         .writeText(link)
         .then(() => {
