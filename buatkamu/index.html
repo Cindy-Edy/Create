@@ -64,6 +64,10 @@
     const teks1 = decodeURIComponent(urlParams.get('teks1') || 'Puisi belum diisi.');
     const textsec2 = decodeURIComponent(urlParams.get('textsec2') || 'Nama belum diisi.');
 
+    // Masukkan teks ke elemen
+    document.getElementById('teks1').innerText = teks1;
+    document.getElementById('textsec2').innerText = textsec2;
+  
   </script>
 
 <script src="script.js"></script>
