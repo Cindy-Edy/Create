@@ -145,14 +145,14 @@
 
   <div class="input-form">
     <form id="updateForm">
-      <label for="text1">Text 1</label>
-      <input type="text" id="text1" placeholder="Text 1" required>
+      <label for="teks1">Text 1</label>
+      <input type="text" id="teks1" placeholder="Teks 1" required>
 
-      <label for="text2">Text 2</label>
-      <input type="text" id="text2" placeholder="Text 2" required>
+      <label for="teks2">Text 2</label>
+      <input type="text" id="teks2" placeholder="Teks 2" required>
 
-      <label for="text3">Pesan panjang</label>
-      <textarea id="text3" placeholder="Isi Pesan" required></textarea>
+      <label for="teks3">Pesan panjang</label>
+      <textarea id="teks3" placeholder="Isi Pesan" required></textarea>
 
       <button type="submit">Buat Link</button>
     </form>
@@ -171,13 +171,13 @@
       e.preventDefault();
 
       // Ambil nilai dari input
-      const text1 = encodeURIComponent(document.getElementById('text1').value);
-      const text2 = encodeURIComponent(document.getElementById('text2').value);
-      const text3 = encodeURIComponent(document.getElementById('text3').value);
+      const teks1 = encodeURIComponent(document.getElementById('teks1').value);
+      const teks2 = encodeURIComponent(document.getElementById('teks2').value);
+      const teks3 = encodeURIComponent(document.getElementById('teks3').value);
 
 
       // Buat link dengan query string
-      const link = `https://cindy-edy.github.io/Create/index.html?text1=${text1}&text2=${text2}&text3=${text3}`;
+      const link = `https://cindy-edy.github.io/Create/create/index.html?teks1=${teks1}&teks2=${teks2}&teks3=${teks3}`;
 
       // Tampilkan notifikasi dengan SweetAlert2
       Swal.fire({
