@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Birthday</title>
-  <!-- Favicon -->
-  <link rel="icon" type="image" href="img/il.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     /* Gaya umum halaman */
     body {
@@ -86,30 +86,40 @@
     }
 
     /* Tombol Clear Data */
-    #clearDataButton {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 30px;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
+    .btn {
+      padding: 15px 20px;
+      font-size: 1em;
       font-weight: bold;
-      color: #fff;
-      background: linear-gradient(45deg, #36d1dc, #5b86e5);
+      color: white;
+      background: linear-gradient(to right, #36d1dc, #5b86e5);
       border: none;
       border-radius: 25px;
-      box-shadow: 0 6px 10px rgba(50, 200, 230, 0.4);
       cursor: pointer;
+      box-shadow: 0 6px 10px rgba(50, 200, 230, 0.4);
       transition: all 0.3s ease;
     }
 
-    #clearDataButton:hover {
+    .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 15px rgba(50, 200, 230, 0.5);
     }
 
-    #clearDataButton:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 6px rgba(50, 200, 230, 0.3);
+    .btn-secondary {
+      margin-top: 10px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 8px 15px rgba(255, 70, 92, 0.5);
+    }
+
+    .btn-link {
+      background: linear-gradient(to right, #f7971e, #ffd200);
+      margin-top: 10px;
+    }
+
+    .btn-link:hover {
+      box-shadow: 0 8px 15px rgba(255, 215, 0, 0.5);
     }
 
     footer {
@@ -127,30 +137,6 @@
       color: #ff416c;
     }
 
-    .copy-link {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: bold;
-      color: #fff;
-      text-decoration: none;
-      background: linear-gradient(45deg, #36d1dc, #5b86e5);
-      border-radius: 25px;
-      box-shadow: 0 4px 6px rgba(50, 200, 230, 0.4);
-      transition: all 0.3s ease-in-out;
-    }
-
-    .copy-link:hover {
-      background: linear-gradient(45deg, #5b86e5, #36d1dc);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(50, 200, 230, 0.5);
-    }
-
-    .copy-link:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 6px rgba(50, 200, 230, 0.3);
-    }
   </style>
 </head>
 
@@ -159,9 +145,6 @@
 
   <div class="input-form">
     <form id="updateForm">
-      <label for="loadingMessage">Text Loading</label>
-      <input type="text" id="loadingMessage" placeholder="Text Loading" required>
-
       <label for="text1">Text 1:</label>
       <input type="text" id="text1" placeholder="Text 1" required>
 
@@ -171,57 +154,57 @@
       <label for="text3">Pesan:</label>
       <textarea id="text3" placeholder="Isi Pesan" required></textarea>
 
-      <button type="submit">Update Message</button>
+      <button type="submit">Buat Link</button>
     </form>
   </div>
-  <button id="clearDataButton" onclick="clearData()">Clear Data</button>
+  <button class="btn btn-secondary" id="clearData">Hapus Data</button>
 
   <footer>
-    <p>Dibuat Oleh Edy & Cindy | <a href="https://cindy-edy.github.io/Create/index.html" id="copyLink" class="copy-link">Copy Link</a></p>
+    <p>Dibuat Oleh Edy | Cindy 
   </footer>
 
   <script>
-    document.getElementById('updateForm').addEventListener('submit', function (e) {
+    const form = document.getElementById('updateForm');
+    const clearDataButton = document.getElementById('clearData');
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      const loadingMessage = document.getElementById('loadingMessage').value;
-      const text1 = document.getElementById('text1').value;
-      const text2 = document.getElementById('text2').value;
-      const text3 = document.getElementById('text3').value;
 
-      // Simpan ke localStorage
-      localStorage.setItem('loadingMessage', loadingMessage);
-      localStorage.setItem('text1', text1);
-      localStorage.setItem('text2', text2);
-      localStorage.setItem('text3', text3);
+      // Ambil nilai dari input
+      const text1 = encodeURIComponent(document.getElementById('text1').value);
+      const text2 = encodeURIComponent(document.getElementById('text2').value);
+      const text3 = encodeURIComponent(document.getElementById('text3').value);
 
-      alert('Content saved! Open the display page to see updates.');
+
+      // Buat link dengan query string
+      const link = `https://cindy-edy.github.io/Create/create/index.html?text1=${text1}&text2=${text2}&text3=${text3}`;
+
+      // Tampilkan notifikasi dengan SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        html: `copy link dibawah ini ya:<br><a href="${link}" target="_blank">${link}</a>`,
+        confirmButtonColor: '#36d1dc',
+      });
     });
 
-    document.getElementById('copyLink').addEventListener('click', function (e) {
-      e.preventDefault();
-      const link = window.location.href;
-      navigator.clipboard.writeText(link).then(() => alert('Link copied to clipboard!'));
+    clearDataButton.addEventListener('click', function () {
+      Swal.fire({
+        title: 'Yakin ingin menghapus data?',
+        text: 'Semua pesan akan dihapus!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff416c',
+        cancelButtonColor: '#ccc',
+        confirmButtonText: 'Ya, hapus!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear(); // Hapus semua data di localStorage
+          Swal.fire('Data dihapus!', 'Semua pesan telah dihapus.', 'success');
+        }
+      });
     });
-
-    function clearData() {
-      localStorage.clear(); // Menghapus semua data di localStorage
-      alert('Content cleared!'); // Menampilkan pesan konfirmasi
-      location.reload(); // Memuat ulang halaman untuk memperbarui konten
-    }
   </script>
-<script>
-  document.getElementById('copyLink').addEventListener('click', function (e) {
-    e.preventDefault(); // Mencegah perilaku tautan default
-    const link = "https://cindy-edy.github.io/Create/index.html"; // Tautan yang ditentukan
-    navigator.clipboard.writeText(link).then(() => {
-      alert(`Link copied to clipboard:\n${link}`); // Pesan konfirmasi
-    }).catch((err) => {
-      alert('Failed to copy the link. Please try again!');
-      console.error('Copy error: ', err); // Debug jika ada kesalahan
-    });
-  });
-</script>
-
 </body>
 
 </html>
