@@ -381,17 +381,20 @@
     }
 
     footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-   
-}
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
 
-footer a {
-    color: rgba(95, 92, 92, 0.875); /* Warna putih dengan transparansi */
-    text-decoration: none; /* Menghapus garis bawah */
-}
+    }
+
+    footer a {
+      color: rgba(95, 92, 92, 0.875);
+      /* Warna putih dengan transparansi */
+      text-decoration: none;
+      /* Menghapus garis bawah */
+    }
+
     /* ... */
   </style>
 </head>
@@ -427,7 +430,7 @@ footer a {
 
   <!-- Slider Swiper -->
   <div class="swiper mySwiper">
-    
+
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
       <div class="swiper-slide">
@@ -459,12 +462,12 @@ footer a {
         <!-- Konten teks -->
         <div id="scroll-container" class="blocktext">
           <p id="teks3" class="itim" style="font-size: 16px; margin-left: 40px">
-            </p>
+          </p>
         </div>
       </div>
-     
+
     </div>
-   
+
     <!-- Paginasi Swiper -->
     <div class="swiper-pagination"></div>
   </div>
@@ -472,26 +475,13 @@ footer a {
   <!-- Library JavaScript Swiper -->
   <script src="data/swiper-bundle.min.js"></script>
 
+
   <script>
-   window.addEventListener('load', () => {
-      const loadingMessage = localStorage.getItem('loadingMessage');
-      const text1 = localStorage.getItem('text1');
-      const text2 = localStorage.getItem('text2');
-      const text3 = localStorage.getItem('text3');
-     
-      if (loadingMessage) {
-        document.querySelector('.loading-message').innerText = loadingMessage;
-      }
-      if (text1) {
-        document.getElementById('teks1').innerText = text1;
-      }
-      if (text2) {
-        document.getElementById('teks2').innerText = text2;
-      }
-      if (text3) {
-        document.getElementById('teks3').innerText = text3;
-      }
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+
+    document.getElementById('teks1').innerText = decodeURIComponent(urlParams.get('teks1') || 'Pesan 2 belum diisi.');
+    document.getElementById('teks2').innerText = decodeURIComponent(urlParams.get('teks2') || 'Pesan 3 belum diisi.');
+    document.getElementById('teks3').innerText = decodeURIComponent(urlParams.get('teks3') || 'Pesan 4 belum diisi.');
 
     function animateTeks3(text) {
       const teks3Element = document.getElementById('teks3');
@@ -608,9 +598,9 @@ footer a {
 
   </script>
 
-<footer>
-  <a href="#">@ Edy & Cindy</a>
-</footer>
+  <footer>
+    <a href="#">@ Edy & Cindy</a>
+  </footer>
 </body>
 
 </html>
