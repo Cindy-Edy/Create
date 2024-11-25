@@ -475,17 +475,16 @@
   <!-- Library JavaScript Swiper -->
   <script src="data/swiper-bundle.min.js"></script>
 
-
-  <script>
+<script>
     const urlParams = new URLSearchParams(window.location.search);
 
-    document.getElementById('text1').innerText = decodeURIComponent(urlParams.get('text1') || 'Pesan 2 belum diisi.');
-    document.getElementById('text2').innerText = decodeURIComponent(urlParams.get('text2') || 'Pesan 3 belum diisi.');
-    document.getElementById('text3').innerText = decodeURIComponent(urlParams.get('text3') || 'Pesan 4 belum diisi.');
+    document.getElementById('teks1').innerText = decodeURIComponent(urlParams.get('teks1') || 'Pesan 2 belum diisi.');
+    document.getElementById('teks2').innerText = decodeURIComponent(urlParams.get('teks2') || 'Pesan 3 belum diisi.');
+    document.getElementById('teks3').innerText = decodeURIComponent(urlParams.get('teks3') || 'Pesan 4 belum diisi.');
 
     function animateTeks3(text) {
-      const text3Element = document.getElementById('text3');
-      new TypeIt(text3Element, {
+      const teks3Element = document.getElementById('teks3');
+      new TypeIt(teks3Element, {
         strings: [text],
         speed: 50,
         startDelay: 500,
