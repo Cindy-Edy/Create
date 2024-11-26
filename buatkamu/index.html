@@ -60,9 +60,9 @@
     // Ambil data dari URL
     const urlParams = new URLSearchParams(window.location.search);
 
-    // Ambil puisi dan tanda tangan dari query string
-    const teks1 = decodeURIComponent(urlParams.get('teks1') || 'Puisi belum diisi.');
-    const textsec2 = decodeURIComponent(urlParams.get('textsec2') || 'Nama belum diisi.');
+    // Ambil pesan
+    const teks1 = decodeURIComponent(urlParams.get('teks1') || 'pesan belum diisi.');
+    const textsec2 = decodeURIComponent(urlParams.get('textsec2') || 'pesan belum diisi.');
 
     // Masukkan teks ke elemen
     document.getElementById('teks1').innerText = teks1;
